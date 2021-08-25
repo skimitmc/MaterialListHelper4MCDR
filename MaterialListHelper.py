@@ -1,11 +1,10 @@
 import os
-import json
 import csv
 from mcdreforged.api.all import *
 
 PLUGIN_METADATA = {
     'id': 'material_list_helper',
-    'version': '0.0.1',
+    'version': '0.0.2',
     'name': 'MaterialListHelper',
     'description': 'A plugin to help the players collect materials for a project together',
     'author': 'yggdyy_',
@@ -55,15 +54,20 @@ def on_load(server, prev):
         )
     )
 
+    server.logger.info("Register help message...")
+    server.register_help_message("!!mlh", "输入!!mlh获得帮助, 或者访问 https://github.com/skimitmc/MaterialListHelper4MCDR 阅读README.md")
+
 # command !!mlh <file_name> show
 def command_show(scr, context):
     file_path = material_file_path + context["file_name"] + ".csv"
     material_list = getMaterialList(file_path)
     for i in material_list:
-        ch = "【未完成】" + color_char + "2"
         if i[2] == "True": # this type of material has been collected
             ch = "【已完成】" + color_char + "8"
-        scr.reply(ch + "[" + i[0] + "]: " + i[1])
+            scr.reply(ch + "[" + i[0] + "]: " + i[1] + " | " + color_char + "7标记者: " + i[3])
+        else:
+            ch = "【未完成】" + color_char + "2"
+            scr.reply(ch + "[" + i[0] + "]: " + i[1])
 
 # command !!mlh <file_name> finish <material_name>
 def command_finish(scr, context):
@@ -73,14 +77,18 @@ def command_finish(scr, context):
     file_path = material_file_path + context["file_name"] + ".csv"
     rows = [row for row in csv.reader(open(file_path, "r"))]
     for i in rows:
-        if(len(i) <= 3 or i[0] == "Item"):
+        if(len(i) < 4 or i[0] == "Item"):
             continue
         if(i[0] == context["material_name"]):
             i[2] = "True"
+            if scr.is_player:
+                i[3] = scr.player
+            else:
+                i[3] = "The Console"
     with open(file_path, "w") as csv_file:
         new_material_list = csv.writer(csv_file)
         for i in rows:
-            if(len(i) <= 3 or i[0] == "Item"):
+            if(len(i) < 4 or i[0] == "Item"):
                 continue
             new_material_list.writerow(i)
     scr.reply("修改已完成")
@@ -93,13 +101,14 @@ def command_reset(scr, context):
     file_path = material_file_path + context["file_name"] + ".csv"
     rows = [row for row in csv.reader(open(file_path, "r"))]
     for i in rows:
-        if(len(i) <= 3 or i[0] == "Item"):
+        if(len(i) < 4 or i[0] == "Item"):
             continue
         i[2] = "False"
+        i[3] = ""
     with open(file_path, "w") as csv_file:
         new_material_list = csv.writer(csv_file)
         for i in rows:
-            if(len(i) <= 3 or i[0] == "Item"):
+            if(len(i) < 4 or i[0] == "Item"):
                 continue
             new_material_list.writerow(i)
     scr.reply("已重置")
@@ -137,7 +146,7 @@ def getMaterialList(material_list_file):
     material_list = [row for row in csv.reader(open(material_list_file, "r"))]
     ret = []
     for i in material_list:
-        if len(i) <= 3 or i[0] == "Item":
+        if len(i) < 4 or i[0] == "Item":
             continue
-        ret.append( [i[0], i[1], i[2]] )
+        ret.append( [i[0], i[1], i[2], i[3]] )
     return ret
