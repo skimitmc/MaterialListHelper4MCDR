@@ -4,7 +4,7 @@ from mcdreforged.api.all import *
 
 PLUGIN_METADATA = {
     'id': 'material_list_helper',
-    'version': '0.0.2',
+    'version': '0.0.3',
     'name': 'MaterialListHelper',
     'description': 'A plugin to help the players collect materials for a project together',
     'author': 'yggdyy_',
@@ -67,7 +67,7 @@ def command_show(scr, context):
             scr.reply(ch + "[" + i[0] + "]: " + i[1] + " | " + color_char + "7标记者: " + i[3])
         else:
             ch = "【未完成】" + color_char + "2"
-            scr.reply(ch + "[" + i[0] + "]: " + i[1])
+            scr.reply(ch + "[" + i[0] + "]: " + i[1] + color_char + "7 [" + getMCNum(int(i[1]), 64) + "]")
 
 # command !!mlh <file_name> finish <material_name>
 def command_finish(scr, context):
@@ -149,4 +149,8 @@ def getMaterialList(material_list_file):
         if len(i) < 4 or i[0] == "Item":
             continue
         ret.append( [i[0], i[1], i[2], i[3]] )
+    return ret
+
+def getMCNum(num, per_group):
+    ret = str(int(num / (27 * per_group) ) ) + "盒 " + str(int(num % (27 * per_group) / per_group) ) + "组 " + str(int(num % per_group) ) + "个"
     return ret
