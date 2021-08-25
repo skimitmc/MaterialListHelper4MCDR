@@ -10,6 +10,6 @@ Mateial List Helper (简称 MLH) 是一个可以全服共享由投影([Litematic
 #### 食用指令  
 1. `!!mlh help`: 查看帮助  
 2. `!!mlh list`: 查看可用的材料列表文件列表  
-3. `!!mlh <file_name> reset`: 重置指定材料列表 (file_name中不含后缀.csv)  
+3. `!!mlh <file_name> reset`: 重置指定材料列表 (file_name中不含后缀.csv)，**注意，保险起见，每一次新放入一个列表文件都最好先使用一次该指令**  
 4. `!!mlh <file_name> show`: 显示指定材料列表  
 5. `!!mlh <file_name> finish <material_name>`: 将指定材料列表中的指定材料标为已完成，比方说`!!mlh test finish 黑曜石`
