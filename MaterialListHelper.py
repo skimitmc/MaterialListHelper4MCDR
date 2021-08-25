@@ -9,8 +9,9 @@ PLUGIN_METADATA = {
     'name': 'MaterialListHelper',
     'description': 'A plugin to help the players collect materials for a project together',
     'author': 'yggdyy_',
+    'link': 'https://github.com/skimitmc/MaterialListHelper4MCDR',
     'dependencies': {
-        
+        'mcdreforged': '>=1.0.0'
     }
 }
 
