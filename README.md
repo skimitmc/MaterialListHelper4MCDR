@@ -1,7 +1,6 @@
 ## Material List Helper (for [MCDR](https://github.com/Fallen-Breath/MCDReforged)) 材料列表共享  
 Mateial List Helper (简称 MLH) 是一个可以全服共享由投影([Litematica mod](https://www.curseforge.com/minecraft/mc-mods/litematica))导出的材料列表文件(.csv)，方便多名玩家共同准备材料的[MCDR](https://github.com/Fallen-Breath/MCDReforged)插件。  
-目前版本v0.1.0，功能尚且不全，Bug尚且多多，请凑合着用:(    
-*目前该插件仍是文件夹插件，预计将在v0.1.1打包成.mcdr*  
+目前版本v0.1.1，功能尚且不全，Bug尚且多多，请凑合着用:(      
 #### 食用指令  
 1. `!!mlh help`: 查看帮助  
 2. `!!mlh list`: 查看可用的材料列表文件列表  
