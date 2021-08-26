@@ -1,6 +1,7 @@
 # many constants are defined here
 
 import os
+import platform
 
 color_char = "§" # Minecraft color char
 black = color_char + "0"
@@ -37,4 +38,15 @@ min_permission_level_for_add = 3 # also
 min_permission_level_for_tpi = basic_change_permission_level # also
 no_permission_message = red + "你没有权限qwq"
 
-list_path =  os.path.dirname(os.path.abspath(__file__) ) + "\\material_list_helper\\material_list\\" # where the json files
+list_path =  os.path.dirname(os.path.abspath(__file__) )
+path_char = "\\"
+cur = list_path.find(".mcdr")
+if platform.system() == "Windows":
+	while list_path[cur] != "\\":
+		cur -= 1
+	list_path = list_path[0 : cur] + "\\material_list_helper\\material_list\\"
+else:
+	while list_path[cur] != "/":
+		cur -= 1
+	list_path = list_path[0 : cur] + "/material_list_helper/material_list/"
+	path_char = "/"
