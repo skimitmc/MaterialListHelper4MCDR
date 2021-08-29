@@ -9,5 +9,5 @@ Mateial List Helper (简称 MLH) 是一个可以全服共享由投影([Litematic
 5. `!!mlh <file_name> finish <material_name>`: 将指定材料列表中的指定材料标为已完成，比方说`!!mlh test finish 黑曜石`
 6. `!!mlh <file_name> unfinish <material_name>`: 将指定材料列表中的指定材料标记为未完成  
 7. `!!mlh <file_name> tpi <material_name>`: 表示你参加指定材料列表中指定材料的准备  
-8. `!!mlh add <path> <file_name>`: 从指定的绝对路径`<path>`指向的csv导入材料列表，导入后的名称为`<file_name>`。比方说 `!!mlh add E:\HWF\qwq.csv qwq`，然后你可以用 `!!mlh show qwq`来查看 **注意，由于某种原因，路径中不能含有空格**
+8. `!!mlh add <path> <file_name>`: 从指定的绝对路径`<path>`指向的csv导入材料列表，导入后的名称为`<file_name>`。比方说 `!!mlh add E:\HWF\qwq.csv qwq`，然后你可以用 `!!mlh show qwq`来查看 **注意，由于某种原因，路径中不能含有空格**  
 **务必将csv文件转换到服务器运行的系统的默认编码**
